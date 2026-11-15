@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dea18e4143d7d"]
+
+[ext_resource type="Script" uid="uid://dbtias451mbp0" path="res://overworld_player.gd" id="1_utdjk"]
+[ext_resource type="Texture2D" uid="uid://j0tkyyboqs0k" path="res://art/sprites/Sprite-0001.png" id="2_utdjk"]
+[ext_resource type="Texture2D" uid="uid://b36kwsnmym6cn" path="res://art/sprites/Sprite-0002.png" id="3_vy3ma"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_facu4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_utdjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vy3ma")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_facu4"]
+size = Vector2(16, 16)
+
+[node name="OverworldPlayer" type="Node2D" unique_id=1850043464]
+position = Vector2(139, 124)
+scale = Vector2(5, 5)
+script = ExtResource("1_utdjk")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=200126068]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_facu4")
+animation = &"walk"
+frame_progress = 0.107794695
+
+[node name="Area2D" type="Area2D" parent="." unique_id=973429021]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=156156466]
+visible = false
+shape = SubResource("RectangleShape2D_facu4")
