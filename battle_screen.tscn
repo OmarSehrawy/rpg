@@ -1,0 +1,212 @@
+[gd_scene format=3 uid="uid://dea18e4143d7d"]
+
+[ext_resource type="Texture2D" uid="uid://2xukti2f084v" path="res://art/forest.jpeg" id="1_mkoka"]
+[ext_resource type="Script" uid="uid://c213ewuhi1dnu" path="res://player_health.gd" id="2_0c6le"]
+[ext_resource type="Script" uid="uid://cbq03y1t5yuul" path="res://player.gd" id="2_bom31"]
+[ext_resource type="PackedScene" uid="uid://cr45widn7t17m" path="res://health.tscn" id="3_638wx"]
+[ext_resource type="Texture2D" uid="uid://j0tkyyboqs0k" path="res://art/sprites/Sprite-0001.png" id="4_638wx"]
+[ext_resource type="Texture2D" uid="uid://b36kwsnmym6cn" path="res://art/sprites/Sprite-0002.png" id="5_0c6le"]
+[ext_resource type="Script" uid="uid://61ab0x6cojp8" path="res://enemy.gd" id="7_wk8rl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sh77q"]
+bg_color = Color(0.18409231, 0.08478544, 0.08935451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wk8rl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_facu4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_638wx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0c6le")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0c6le"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_638wx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0c6le")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BattleScreen" type="Control" unique_id=666699245]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=624715795]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 400.0
+texture = ExtResource("1_mkoka")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1352024246]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="BattleUI" type="HBoxContainer" parent="." unique_id=544826463]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -200.0
+offset_right = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 2
+
+[node name="Actions" type="PanelContainer" parent="BattleUI" unique_id=585435971]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_sh77q")
+
+[node name="MarginContainer3" type="MarginContainer" parent="BattleUI/Actions" unique_id=326947938]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.63
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleUI/Actions/MarginContainer3" unique_id=298031877]
+layout_mode = 2
+
+[node name="AttackCommand" type="Button" parent="BattleUI/Actions/MarginContainer3/VBoxContainer" unique_id=1685259052]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Attack"
+
+[node name="Button2" type="Button" parent="BattleUI/Actions/MarginContainer3/VBoxContainer" unique_id=655477410]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Skill	"
+
+[node name="Button3" type="Button" parent="BattleUI/Actions/MarginContainer3/VBoxContainer" unique_id=832260826]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Item"
+
+[node name="Button4" type="Button" parent="BattleUI/Actions/MarginContainer3/VBoxContainer" unique_id=1298774110]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Flee"
+
+[node name="Players" type="PanelContainer" parent="BattleUI" unique_id=1037485975]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sh77q")
+
+[node name="MarginContainer3" type="MarginContainer" parent="BattleUI/Players" unique_id=1194586684]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.63
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleUI/Players/MarginContainer3" unique_id=725428782]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleUI/Players/MarginContainer3/VBoxContainer" unique_id=287169098]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayerName" type="Label" parent="BattleUI/Players/MarginContainer3/VBoxContainer/HBoxContainer" unique_id=1633972169]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 6
+text = "Player 1"
+
+[node name="PlayerHealth" type="Label" parent="BattleUI/Players/MarginContainer3/VBoxContainer/HBoxContainer" unique_id=1225244552]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100"
+script = ExtResource("2_0c6le")
+
+[node name="Label" type="Label" parent="." unique_id=977597072]
+visible = false
+layout_mode = 0
+offset_left = 257.0
+offset_top = 29.0
+offset_right = 344.0
+offset_bottom = 60.0
+scale = Vector2(3.345, 3.345)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_wk8rl")
+text = "You Win"
+
+[node name="Player" type="Node2D" parent="." unique_id=1604016944 node_paths=PackedStringArray("enemy", "command_window", "win_label") groups=["Players"]]
+position = Vector2(183, 298)
+script = ExtResource("2_bom31")
+enemy = NodePath("../Enemy")
+command_window = NodePath("../BattleUI/Actions/MarginContainer3/VBoxContainer")
+win_label = NodePath("../Label")
+metadata/_edit_group_ = true
+
+[node name="Health" parent="Player" unique_id=1530871050 instance=ExtResource("3_638wx")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1940326544]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_facu4")
+
+[node name="Enemy" type="Node2D" parent="." unique_id=1923807968 node_paths=PackedStringArray("player_target") groups=["Enemies"]]
+position = Vector2(601, 293)
+script = ExtResource("7_wk8rl")
+player_target = NodePath("../Player")
+metadata/_edit_group_ = true
+
+[node name="Health" parent="Enemy" unique_id=504204231 instance=ExtResource("3_638wx")]
+max_health = 7
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy" unique_id=1444616241]
+modulate = Color(1, 0.57254905, 0, 1)
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_0c6le")
+flip_h = true
+
+[connection signal="pressed" from="BattleUI/Actions/MarginContainer3/VBoxContainer/AttackCommand" to="Player" method="_on_attack_command_pressed"]
+[connection signal="turn_finished" from="Player" to="Enemy" method="_on_player_turn_finished"]
+[connection signal="health_changed" from="Player/Health" to="BattleUI/Players/MarginContainer3/VBoxContainer/HBoxContainer/PlayerHealth" method="_on_health_health_changed"]
+[connection signal="turn_finished" from="Enemy" to="Player" method="_on_enemy_turn_finished"]
+[connection signal="dead" from="Enemy/Health" to="Player" method="_on_health_dead"]
+[connection signal="dead" from="Enemy/Health" to="Enemy" method="_on_health_dead"]
